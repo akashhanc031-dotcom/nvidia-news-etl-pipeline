@@ -1,0 +1,224 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://nvidianews.nvidia.com/releases.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        272,
+        -16
+      ],
+      "id": "0b10adff-9929-414a-a9d2-bfbefa5f4bc3",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "6c1c20bc-cb4e-433a-9f04-890ca3b1a1a5",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "AI|GPU|Blackwell|data center|computing",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.4,
+      "position": [
+        496,
+        -16
+      ],
+      "id": "00018696-8b8b-4858-b877-edaf074190ac",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "86a8f92b-0cb3-47a2-85da-492b5f14a264",
+              "name": "Title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "5e9a6aca-0b58-487d-ab14-8cbbc4f6791a",
+              "name": "Published Date",
+              "value": "={{ $json.isoDate }}",
+              "type": "string"
+            },
+            {
+              "id": "0de0ea85-01e6-423f-ba4d-3e7f7466f1ba",
+              "name": "Article URL",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "a34754b5-6d22-4f4c-8161-409365506371",
+              "name": "Description",
+              "value": "={{ $json.contentSnippet }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        720,
+        -16
+      ],
+      "id": "c29473d2-c554-44f3-9639-ab839614ae3f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.2,
+      "position": [
+        944,
+        -16
+      ],
+      "id": "7551bf64-0e1f-4f39-b2f0-237f1eb7f8ce",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "fromEmail": "akashhanc031@gmail.com",
+        "toEmail": "akashhanc031@gmail.com",
+        "subject": "NVIDIA AI News Report",
+        "emailFormat": "text",
+        "text": "Hi, here is your automated NVIDIA AI News Report for today. The CSV file is attached.",
+        "options": {
+          "fileAttachments": "data"
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1168,
+        -16
+      ],
+      "id": "6c07ee1e-c43d-4451-8faf-6df869f6372f",
+      "name": "Send an Email",
+      "webhookId": "de334c06-f14d-4e14-9b11-7206ec64382f",
+      "credentials": {
+        "smtp": {
+          "id": "vLttiwdk7OdhLaNb",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        112,
+        -16
+      ],
+      "id": "a0f46fd3-f956-4e4d-8c1a-2c8679894a96",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "210406e1-56bb-4200-b8bb-b7be7d1313a2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4904d351564192d4c45e768e3ae6917e1f43fc175eb5afcdd757df564c9c9170"
+  },
+  "nodeGroups": [],
+  "id": "bnig4cTxotueO65V",
+  "tags": []
+}
