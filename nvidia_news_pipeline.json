@@ -104,8 +104,8 @@
     },
     {
       "parameters": {
-        "fromEmail": "akashhanc031@gmail.com",
-        "toEmail": "akashhanc031@gmail.com",
+        "fromEmail": "you@gmail.com",
+        "toEmail": "you@gmail.com",
         "subject": "NVIDIA AI News Report",
         "emailFormat": "text",
         "text": "Hi, here is your automated NVIDIA AI News Report for today. The CSV file is attached.",
