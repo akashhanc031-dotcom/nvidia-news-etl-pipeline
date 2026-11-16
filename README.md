@@ -9,7 +9,7 @@ This is an independent data engineering portfolio project built using **n8n**. I
 ![Workflow Canvas](images/workflow-canvas.jpeg)
 
 ### The ETL Process:
-1. **Trigger:** Schedule Trigger (runs daily at 8:00 AM).
+1. **Trigger:** Schedule Trigger (runs daily at 8:30 AM).
 2. **Extract:** RSS Read node (pulls from `nvidianews.nvidia.com`).
 3. **Filter:** IF/Filter node using Regex (`AI|GPU|Blackwell|data center|computing`) to reduce data noise by 50%.
 4. **Transform:** Edit Fields node (maps raw XML to a clean 4-column schema: Title, Published Date, Article URL, Description).
