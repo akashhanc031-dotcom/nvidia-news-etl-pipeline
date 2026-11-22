@@ -18,10 +18,10 @@ This is an independent data engineering portfolio project built using **n8n**. I
 
 ## 📊 Results
 ### Cleaned Data Output
-![Cleaned Data](images/cleaned-data.jpeg)
+![Cleaned Data](images/cleaned-data.png)
 
 ### Automated Email Delivery
-![Email Delivery](images/email-delivery.jpeg)
+![Email Delivery](images/email-delivery.png)
 
 ## 📝 Key Learnings & Limitations
 * **Schema Mapping:** Learned how to strip away unstructured, messy JSON and enforce a strict schema for downstream consumption.
