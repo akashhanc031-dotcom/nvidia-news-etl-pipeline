@@ -57,5 +57,5 @@ To make the ML predictions accessible to stakeholders, I designed an interactive
 *   ## 📂 Project Files
 *   [**n8n Workflow Export**](nvidia_news_pipeline.json)
 *   [**Python ML Classification Script**](02_machine_learning/ml_classification_model.ipynb)
-*   [**Power BI Dashboard File**](03_power_bi_dashboard/NVIDIA_AI_News_Classification_Dashboard.pbix)
+*   [**Power BI Dashboard File**](03_power_bi_dashboard/NVIDIA_AI_News_Dashboard.pbix)
 *   [**ML Output Dataset (CSV)**](02_machine_learning/nvidia_news_ml_output.csv)
