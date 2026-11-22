@@ -53,3 +53,9 @@ To make the ML predictions accessible to stakeholders, I designed an interactive
 *   Bridged the gap between Data Engineering (n8n), Machine Learning (Scikit-Learn), and Business Intelligence (Power BI).
 *   Understood the importance of model inference and feature extraction in real-world text classification.
 *   Practiced data storytelling by visualizing ML model outputs for non-technical stakeholders.
+
+*   ## 📂 Project Files
+*   [**n8n Workflow Export**](nvidia_news_pipeline.json)
+*   [**Python ML Classification Script**](02_machine_learning/ml_classification_model.ipynb)
+*   [**Power BI Dashboard File**](03_power_bi_dashboard/NVIDIA_AI_News_Classification_Dashboard.pbix)
+*   [**ML Output Dataset (CSV)**](02_machine_learning/nvidia_news_ml_output.csv)
